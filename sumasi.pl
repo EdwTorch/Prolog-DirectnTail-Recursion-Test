@@ -39,7 +39,7 @@ benchmark_sum_dir(N):-
     statistics(globalused,GlobalAfterDir),
     statistics(cputime,TimeAfterDirect),
     GlobalAlloc is (GlobalAfterDir-GlobalBeforeDir)/1024,
-    Runtime is TimeAfterDirect - TimeBeforeDirect,
+    Runtime is (TimeAfterDirect - TimeBeforeDirect)*1000,
 
     format('Direct Recursion Global Stack Alloc : ~4f KB', [GlobalAlloc]),nl,
     format('Direct Recursion Time Execution : ~4f ms ~n', [Runtime]).
@@ -58,7 +58,7 @@ benchmark_sum_tail(N):-
     statistics(globalused,GlobalAfterTail),
     statistics(cputime,TimeAfterTail),
     GlobalAlloc is (GlobalAfterTail-GlobalBeforeTail)/1024,
-    Runtime is TimeAfterTail - TimeBeforeTail,
+    Runtime is (TimeAfterTail - TimeBeforeTail)*1000,
 
     format('Tail Recursion Global Stack Alloc : ~4f KB', [GlobalAlloc]),nl,
     format('Tail Recursion Time Execution : ~4f ms ~n', [Runtime]).
